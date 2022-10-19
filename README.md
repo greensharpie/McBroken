@@ -4,7 +4,7 @@
 
 ### By: Kevin Blanco
 
-#### [Trello Board](https://trello.com/invite/b/CyKOuEXB/97c5ead1d044edadc0da039d084a363a/war-card-game) | [GitHub](https://github.com/greensharpie)| [Repo Link](https://github.com/greensharpie/kevins-war-cardgame) | [Surge](https://war-the-cardgame.surge.sh/)
+#### [Trello Board](https://trello.com/invite/b/CyKOuEXB/97c5ead1d044edadc0da039d084a363a/war-card-game) | [GitHub](https://github.com/greensharpie)| [Repo Link](https://github.com/greensharpie/McBroken) | [Heroku](https://)
 
 ---
 
@@ -31,15 +31,11 @@
 
 ### **_Component Hierarchy Diagram_**
 
-<!-- #### WAR - THE CARD GAME
-
-![WAR - THE CARD GAME](https://user-images.githubusercontent.com/113216469/194410935-7447f2a7-841a-4421-b910-f146399767f9.png) -->
+![Component Hierachy Diagram](Charts/McBroken-Component-Hierarchy2.drawio.png)
 
 ### **_Entity Relationship Diagram_**
 
-<!-- #### WAR - THE CARD GAME
-
-![WAR - THE CARD GAME](https://user-images.githubusercontent.com/113216469/194410935-7447f2a7-841a-4421-b910-f146399767f9.png) -->
+![EntityRelationshipDiagram](Charts/McBroken.ERD.drawio.png)
 
 ---
 
