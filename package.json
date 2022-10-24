@@ -1,0 +1,23 @@
+{
+  "name": "mcbroken",
+  "version": "1.0.0",
+  "description": "## Date: 10/19/2022",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/greensharpie/McBroken.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/greensharpie/McBroken/issues"
+  },
+  "homepage": "https://github.com/greensharpie/McBroken#readme",
+  "dependencies": {
+    "mongoose": "^6.7.0"
+  }
+}

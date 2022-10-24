@@ -4,7 +4,7 @@
 
 ### By: Kevin Blanco
 
-#### [Trello Board](https://trello.com/invite/b/CyKOuEXB/97c5ead1d044edadc0da039d084a363a/war-card-game) | [GitHub](https://github.com/greensharpie)| [Repo Link](https://github.com/greensharpie/McBroken) | [Heroku](https://)
+#### [Trello Board](https://trello.com/b/2HRFuiyR/mcbroken) | [GitHub](https://github.com/greensharpie)| [Repo Link](https://github.com/greensharpie/McBroken) | [Heroku](https://)
 
 ---
 
