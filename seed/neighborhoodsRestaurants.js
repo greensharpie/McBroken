@@ -1,30 +1,74 @@
-const db = require('../db') 
-const { Neighborhood, Restaurant} = require('../models')
+const db = require('../db')
+const { Neighborhood, Restaurant } = require('../models')
 
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 
 const main = async () => {
-  const hoodOne = await new Neighborhood({
-    name: 'Plaza Midwood',
-    restaurants: restOne._id
+  const restOne = await new Restaurant({
+    name: `McDonald's`,
+    address: '2301 Central Ave, Charlotte, NC 28205',
+    phone: `704-375-7587`,
+    broken: 'true',
+    working: 'false',
+    update: 'update'
   })
-  hoodOne.save()
+  restOne.save()
 
-  const hoodTwo = await new Neighborhood({
-    name: 'Dilworth',
-    restaurants: restTwo._id
+  const restTwo = await new Restaurant({
+    name: `McDonald's`,
+    address: '2625 South Blvd, Charlotte, NC 28209',
+    phone: `704-523-7391`,
+    broken: 'false',
+    working: 'true',
+    update: 'update'
   })
-  hoodTwo.save()
+  restTwo.save()
 
-  const hoodThree = await new Neighborhood({
-    name: 'Wesley Heights',
-    restaurants: restThree._id
+  const restThree = await new Restaurant({
+    name: `McDonald's`,
+    address: '2625 South Blvd, Charlotte, NC 28209',
+    phone: `704-523-7391`,
+    broken: 'false',
+    working: 'true',
+    update: 'update'
   })
-  hoodThree.save()
+  restThree.save()
 
-  const hoodFour = awai new Neighborhood({
-    name: 'South Park',
-    restaurants: restFour._id
+  const restFour = await new Restaurant({
+    name: `McDonald's`,
+    address: '6428 Fairview Rd, Charlotte, NC 28210',
+    phone: `704-362-676`,
+    broken: 'false',
+    working: 'true',
+    update: 'update'
   })
-  hoodFour.save()
+  restFour.save()
+
+  const neighborhoods = [
+    {
+      name: 'Plaza Midwood',
+      restaurants: restOne._id
+    },
+    {
+      name: 'Dilworth',
+      restaurants: restTwo._id
+    },
+    {
+      name: 'Wesley Heights',
+      restaurants: restThree._id
+    },
+    {
+      name: 'South Park',
+      restaurants: restFour._id
+    }
+  ]
+  await Neighborhood.insertMany(neighborhoods)
+  console.log('Created neighborhoods!')
 }
+
+const run = async () => {
+  await main()
+  db.close()
+}
+
+run()
