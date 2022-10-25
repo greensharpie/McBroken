@@ -1,6 +1,7 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const neighborhoodSchema = new Schema(
+const Neighborhood = new Schema(
   {
     name: { type: String, required: true },
     restaurants: { type: Schema.Types.ObjectId, ref: 'restaurants' }
@@ -10,4 +11,4 @@ const neighborhoodSchema = new Schema(
   }
 )
 
-module.exports = neighborhoodSchema
+module.exports = mongoose.model('Neighborhood', Neighborhood)

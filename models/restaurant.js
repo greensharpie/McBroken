@@ -1,6 +1,7 @@
-const { Schema } = require('mongoose')
+const mongoose = require('mongoose')
+const Schema = mongoose.Schema
 
-const restaurantSchema = new Schema(
+const Restaurant = new Schema(
   {
     name: { type: String, required: true },
     address: { type: String, required: true },
@@ -13,4 +14,4 @@ const restaurantSchema = new Schema(
   { timestamps: true }
 )
 
-module.exports = restaurantSchema
+module.exports = mongoose.model('Restaurant', Restaurant)

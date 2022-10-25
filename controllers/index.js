@@ -1,4 +1,4 @@
-const { Neighborhood } = require('../models')
+const Neighborhood = require('../models/neighborhood')
 
 const getAllHoods = async (req, res) => {
   const neighborhoods = await Neighborhood.find({})
@@ -34,11 +34,14 @@ const getHoodById = async (req, res) => {
   try {
     const { id } = req.params
     const neighborhood = await Neighborhood.findById(id)
-    if (!neighborhood) throw Error('Neighborhood not found')
-    res.json(neighborhood)
-  } catch (e) {
-    console.log(e)
-    res.send('Neighborhood not found!')
+    if (neighborhood) {
+      return res.status(200).json({ neighborhood })
+    }
+    return res
+      .status(404)
+      .send('Neighborhood with the specified ID does not exists')
+  } catch (error) {
+    return res.status(500).send(error.message)
   }
 }
 
