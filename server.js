@@ -20,6 +20,18 @@ app.get('/neighborhoods', async (req, res) => {
   res.json(neighborhoods)
 })
 
+app.get('/neighborhoods/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+    const neighborhood = await Neighborhood.findById(id)
+    if (!neighborhood) throw Error('Neighborhood not found')
+    res.json(neighborhood)
+  } catch (e) {
+    console.log(e)
+    res.send('Neighborhood not found!')
+  }
+})
+
 app.listen(PORT, () => {
   console.log(`Express server listening on port ${PORT}`)
 })
