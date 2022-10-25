@@ -10,4 +10,14 @@ router.get('/neighborhoods/:id', controllers.getHoodById)
 
 router.post('/neighborhoods', controllers.createHood)
 
+router.get('/restaurants', controllers.getAllRests)
+
+router.get('/restaurants/:id', controllers.getRestsById)
+
+router.put('/restaurants/:id', controllers.updateRest)
+
+router.post('/restaurants', controllers.createRest)
+
+router.delete('/restaurants/:id', controllers.deleteRest)
+
 module.exports = router

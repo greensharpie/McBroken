@@ -1,4 +1,6 @@
 const Neighborhood = require('../models/neighborhood')
+const restaurant = require('../models/restaurant')
+const Restaurant = require('../models/restaurant')
 
 const getAllHoods = async (req, res) => {
   const neighborhoods = await Neighborhood.find({})
@@ -45,9 +47,72 @@ const getHoodById = async (req, res) => {
   }
 }
 
+const getAllRests = async (req, res) => {
+  const restaurants = await Restaurant.find({})
+  res.json(restaurants)
+}
+
+const getRestsById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const restaurant = await Restaurant.findById(id)
+    if (restaurant) {
+      return res.status(200).json({ restaurant })
+    }
+    return res
+      .status(404)
+      .send('Restaurant with the specified ID does not exists')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const updateRest = async (req, res) => {
+  try {
+    const restaurant = await Restaurant.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      { new: true }
+    )
+    res.status(200).json(restaurant)
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
+const createRest = async (req, res) => {
+  try {
+    const restaurant = await new Restaurant(req.body)
+    await restaurant.save()
+    return res.status(201).json({
+      restaurant
+    })
+  } catch (error) {
+    return res.status(500).json({ error: error.message })
+  }
+}
+
+const deleteRest = async (req, res) => {
+  try {
+    const { id } = req.params
+    const deleted = await Restaurant.findByIdAndDelete(id)
+    if (deleted) {
+      return res.status(200).send('Restaurant deleted')
+    }
+    throw new Error('Restaurant not found')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 module.exports = {
   getAllHoods,
   createHood,
   updateHood,
-  getHoodById
+  getHoodById,
+  getAllRests,
+  getRestsById,
+  updateRest,
+  createRest,
+  deleteRest
 }
