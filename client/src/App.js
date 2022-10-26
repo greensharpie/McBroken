@@ -1,5 +1,4 @@
 import { Routes, Route } from 'react-router-dom'
-import React from 'react'
 import './App.css'
 import Home from './components/Home'
 import Neighborhoods from './components/Neighborhoods'
@@ -13,7 +12,7 @@ function App() {
       </header>
       <main>
         <Routes>
-          <Route path="/neigborhoods" element={<Neighborhoods />} />
+          <Route path="/neighborhoods" element={<Neighborhoods />} />
           <Route path="/" element={<Home />} />
         </Routes>
       </main>

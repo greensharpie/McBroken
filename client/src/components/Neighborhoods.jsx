@@ -1,4 +1,3 @@
-import React from "react";
 import { useState, useEffect } from "react";  
 import { Link } from 'react-router-dom'
 import axios from 'axios'
@@ -10,7 +9,7 @@ const Neighborhoods = () => {
   useEffect(() => {
     const allNeighborhoods = async () => {
       const res = await axios.get(`/api/neighborhoods`)
-      setNeighborhoods(res.data.neighborhoods)
+      setNeighborhoods(res.data)
     }
     allNeighborhoods()
   }, [])
@@ -19,7 +18,7 @@ const Neighborhoods = () => {
     <div className="neighborhoodsContainer">
       <h1>Neighborhoods</h1>
       <div className="neighborhoodsGrid">
-        {neighborhoods.map((neighborhoods) => (
+        {neighborhoods?.map((neighborhoods) => (
           <Link to={`/neighborhoods/${neighborhoods._id}`} key={neighborhoods._id}>
             <Hood 
             name={neighborhoods.name}

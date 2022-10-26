@@ -1,10 +1,9 @@
-import React from 'react'
 
-const Hood = (props)  => {
+const Hood = ({name})  => {
   return (
     <div className='hoodContainer'>
       <div className='hoodinfo'>
-        <h2>{props.name}</h2>
+        <h2>{name}</h2>
       </div>
     </div>
   )

@@ -3,7 +3,7 @@ const restaurant = require('../models/restaurant')
 const Restaurant = require('../models/restaurant')
 
 const getAllHoods = async (req, res) => {
-  const neighborhoods = await Neighborhood.find({})
+  const neighborhoods = await Neighborhood.find({}).populate('restaurants')
   res.json(neighborhoods)
 }
 
