@@ -17,6 +17,7 @@ const Neighborhoods = () => {
   return (
     <div className="neighborhoodsContainer">
       <h1>Neighborhoods</h1>
+
       <div className="neighborhoodsGrid">
         {neighborhoods?.map((neighborhoods) => (
           <Link to={`/neighborhoods/${neighborhoods._id}`} key={neighborhoods._id}>
