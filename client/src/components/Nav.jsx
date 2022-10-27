@@ -1,4 +1,5 @@
 import { Link }  from 'react-router-dom'
+import Form from './Form'
 
 const Nav = () => {
   return(
@@ -8,6 +9,7 @@ const Nav = () => {
         <Link to = {'/'}>Home</Link>
         <Link to = {'/neighborhoods'}>Neighborhoods</Link>
         {/* <Link to = {'/restaurants'}>Restaurants</Link> */}
+        {/* <Link to = {'/forms'}>Form</Link> */}
       </div>
     </nav>
   )

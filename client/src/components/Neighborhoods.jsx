@@ -18,21 +18,12 @@ const Neighborhoods = () => {
   return (
     <div className="neighborhoodsContainer">
       <h1>Neighborhoods</h1>
-
       <div className="neighborhoodsGrid">
         {neighborhoods?.map((neighborhood) => (
           <Link to={`/neighborhoods/${neighborhood._id}`} key={neighborhood._id}>
-          
         {neighborhood.name}
-        
-        
-
           </Link>
-          
-        ))
-
-        }
-        
+        ))}
       </div>
     </div>
   )
