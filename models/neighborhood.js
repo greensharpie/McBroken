@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const Neighborhood = new Schema(
   {
     name: { type: String, required: true },
-    restaurants: { type: Schema.Types.ObjectId, ref: 'Restaurant' }
+    restaurants: [{ type: Schema.Types.ObjectId, ref: 'Restaurant' }]
   },
   {
     timestamps: true

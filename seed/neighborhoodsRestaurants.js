@@ -47,19 +47,19 @@ const main = async () => {
   const neighborhoods = [
     {
       name: 'Plaza Midwood',
-      restaurants: restOne._id
+      restaurant: restOne._id
     },
     {
       name: 'Dilworth',
-      restaurants: restTwo._id
+      restaurant: restTwo._id
     },
     {
       name: 'Wesley Heights',
-      restaurants: restThree._id
+      restaurant: restThree._id
     },
     {
       name: 'South Park',
-      restaurants: restFour._id
+      restaurant: restFour._id
     }
   ]
   await Neighborhood.insertMany(neighborhoods)

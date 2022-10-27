@@ -1,11 +1,6 @@
 const Neighborhood = require('../models/neighborhood')
-const restaurant = require('../models/restaurant')
+// const restaurant = require('../models/restaurant')
 const Restaurant = require('../models/restaurant')
-
-const getAllHoods = async (req, res) => {
-  const neighborhoods = await Neighborhood.find({}).populate('restaurants')
-  res.json(neighborhoods)
-}
 
 const createHood = async (req, res) => {
   try {
@@ -16,6 +11,26 @@ const createHood = async (req, res) => {
     })
   } catch (error) {
     return res.status(500).json({ error: error.message })
+  }
+}
+
+const getAllHoods = async (req, res) => {
+  const neighborhoods = await Neighborhood.find({}).populate('restaurants')
+  res.json(neighborhoods)
+}
+
+const getHoodById = async (req, res) => {
+  try {
+    const { id } = req.params
+    const neighborhood = await Neighborhood.findById(id).populate('restaurants')
+    if (neighborhood) {
+      return res.status(200).json({ neighborhood })
+    }
+    return res
+      .status(404)
+      .send('Neighborhood with the specified ID does not exists')
+  } catch (error) {
+    return res.status(500).send(error.message)
   }
 }
 
@@ -32,18 +47,15 @@ const updateHood = async (req, res) => {
   }
 }
 
-const getHoodById = async (req, res) => {
+const createRest = async (req, res) => {
   try {
-    const { id } = req.params
-    const neighborhood = await Neighborhood.findById(id)
-    if (neighborhood) {
-      return res.status(200).json({ neighborhood })
-    }
-    return res
-      .status(404)
-      .send('Neighborhood with the specified ID does not exists')
+    const restaurant = await new Restaurant(req.body)
+    await restaurant.save()
+    return res.status(201).json({
+      restaurant
+    })
   } catch (error) {
-    return res.status(500).send(error.message)
+    return res.status(500).json({ error: error.message })
   }
 }
 
@@ -77,18 +89,6 @@ const updateRest = async (req, res) => {
     res.status(200).json(restaurant)
   } catch (error) {
     return res.status(500).send(error.message)
-  }
-}
-
-const createRest = async (req, res) => {
-  try {
-    const restaurant = await new Restaurant(req.body)
-    await restaurant.save()
-    return res.status(201).json({
-      restaurant
-    })
-  } catch (error) {
-    return res.status(500).json({ error: error.message })
   }
 }
 
