@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import Hood from "./Hood";
 import Restaurants from "./Restaurants";
 
-const Form = () => {
+const Form = (props) => {
   const [restaurant, setRestaurants] = useState([])
   const initialState = {
     name: '',
@@ -43,15 +43,30 @@ const Form = () => {
 
   return(
     <div>
-   (
+
       <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Restaurant</label>
+        <label htmlFor="name">Submit Restaurant</label>
+        <br></br>
+        <label htmlFor="neighborhoods">Neighborhoods:</label>
+        <select
+          id="neighborhoods"
+          onChange={handleChange}
+          value='Neighborhoods'
+        >
+          <option value="plaza midwood">Plaza Midwood</option>
+          <option value="Dilworth">Dilworth</option>
+          <option value="Wesley Heights">Welsey Heights</option>
+          <option value="South Park">South Park</option>
+        </select>
+        <br></br>
+        <label htmlFor="restaurant">Restaurant:</label>
         <input
           id="name"
           onChange={handleChange}
           value={formState.name}
           placeholder= 'McDonalds'          
         />
+        <br></br>
         <label htmlFor="address">Address:</label>
         <input
           type="text"
@@ -59,6 +74,7 @@ const Form = () => {
           onChange={handleChange}
           value={formState.address}
         />
+        <br></br>
          <label htmlFor="phone">Phone:</label>
         <input
           type="number"
@@ -66,18 +82,21 @@ const Form = () => {
           onChange={handleChange}
           value={formState.phone}
         />
-         {/* <label htmlFor="address">Address:</label>
-        <input
-          type="text"
-          id="address"
+        <br></br>
+        <label htmlFor="working">Ice cream machine working:</label>
+        <select
+          id="working"
           onChange={handleChange}
-          value={formState.address}
-        />
-         */}
-        <button type="submit">Send</button>
+          value='working'
+        >
+          <option value="true">true</option>
+          <option value="false">false</option>
+        </select>
+        <br></br>
+        <button type="submit" onSubmit={props.onSubmit}>Send</button>
       </form>
-      )<h1>Issues:</h1>
-      {/* {issues.map((issue) => (
+      {/* )<h1>Issues:</h1>
+      {issues.map((issue) => (
         <div key={issue._id}>
           <h3>Type: {issue.type}</h3>
           <p>Subject: {issue.subject}</p>
