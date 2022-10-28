@@ -5,10 +5,17 @@ import { BASE_URL } from "../globals";
 import { useEffect } from "react";
 import Hood from "./Hood";
 import Restaurants from "./Restaurants";
+import e from "cors";
 
 const Form = (props) => {
-  const [restaurant, setRestaurants] = useState([])
-  const initialState = {
+  const restaurantInitialState = {
+    _id: '',
+    submitted: false
+  }
+
+  const[restaurant, setRestaurant] = useState(restaurantInitialState)
+
+  const initialValues = {
     name: '',
     address: '',
     phone: '',
@@ -16,30 +23,88 @@ const Form = (props) => {
     working: '',
     update: '',
   }
-  const [formState, setFormState] = useState(initialState)
 
-  useEffect(() => {
-    const getRestaurant = async () => {
+  const [formValues, setFormValues] = useState(initialValues)
+
+  const handleChange = (evt) => {
+    const { id, value } = evt.target
+    setFormValues({...formValues,[id]: value})
+  }
+
+  const handleSubmit = (evt) => {
+    evt.preventDefault()
+    const postRestaurant = async (input) =>{
       try{
-        let res = await axios.get(`${BASE_URL}/restaurant/:id`)
-        console.log('form', res.data)
-        setRestaurants(res.data)
+        await axios.post(`${BASE_URL}/neighborhoods`, input)
+        let get = await axios.get(`${BASE_URL}/neighborhoods/`)
+        const newRestaurant = {
+          _id: get.data.restaurants[get.data.restaurants.length-1]._id,
+          submitted: true
+        }
+        setRestaurant(newRestaurant)
       } catch (error) {
         console.log(error)
       }
     }
-    getRestaurant()
-  })
-
-  const handleSubmit = (evt) => {
-    evt.preventDefault()
-    axios.post(`${BASE_URL}/restaurant/:id`, formState)
-    setFormState(initialState)
+    postRestaurant(formValues)
+    setFormValues(initialValues)
   }
 
-  const handleChange = (evt) => {
-    setFormState({...formState, [evt.target.id]: evt.target.value})
-  }
+
+
+
+
+
+
+
+  // const [restaurant, setRestaurant] = useState([])
+  // const initialState = {
+  //   name: '',
+  //   address: '',
+  //   phone: '',
+  //   broken: '',
+  //   working: '',
+  //   update: '',
+  // }
+  // const [formState, setFormState] = useState(initialState)
+  // const [formValue, setFormValues] = useState(initalValues)
+
+
+  // useEffect(() => {
+  //   const getRestaurant = async () => {
+  //     try{
+  //       let res = await axios.get(`${BASE_URL}/restaurant/:id`)
+  //       console.log('form', res.data)
+  //       setRestaurants(res.data)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   getRestaurant()
+  // })
+
+  // const handleSubmit = (evt) => {
+  //   evt.preventDefault()
+  //   const postRestaurant = async (input) =>{
+  //     try{
+  //       axios.post(`${BASE_URL}/restaurants`, input)
+  //       let get = await axios.get(`${BASE_URL}/restaurants/`)
+  //       const newRestaurant = {
+  //         _id: get.data.restaurants[get.data.restaurants].id,
+  //         submitted: true
+  //       }
+  //       setRestaurant(newRestaurant)
+  //     } catch (error) {
+  //       console.log(error)
+  //     }
+  //   }
+  //   postRestaurant()
+  //   setFormState(initialState)
+  // }
+
+  // const handleChange = (evt) => {
+  //   setFormState({...formState, [evt.target.id]: evt.target.value})
+  // }
 
   return(
     <div>
@@ -63,7 +128,7 @@ const Form = (props) => {
         <input
           id="name"
           onChange={handleChange}
-          value={formState.name}
+          value={formValues.name}
           placeholder= 'McDonalds'          
         />
         <br></br>
@@ -72,15 +137,15 @@ const Form = (props) => {
           type="text"
           id="address"
           onChange={handleChange}
-          value={formState.address}
+          value={formValues.address}
         />
         <br></br>
-         <label htmlFor="phone">Phone:</label>
+        <label htmlFor="phone">Phone:</label>
         <input
           type="number"
           id="phone"
           onChange={handleChange}
-          value={formState.phone}
+          value={formValues.phone}
         />
         <br></br>
         <label htmlFor="working">Ice cream machine working:</label>
