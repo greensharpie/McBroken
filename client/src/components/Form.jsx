@@ -24,7 +24,6 @@ const Form = (props) => {
   }
 
   const [formValues, setFormValues] = useState(initialValues)
-  const [restaurants, setRestaurants] = useState(initialValues)
 
   const handleChange = (evt) => {
     const { id, value, restaurants } = evt.target
@@ -36,19 +35,11 @@ const Form = (props) => {
     const postRestaurant = async (input) =>{
       try{
         await axios.post(`${BASE_URL}/neighborhoods`, input)
-        let get = await axios.get(`${BASE_URL}/neighborhoods/`)
-        const newRestaurant = {
-          _id: get.data.restaurants[get.data.restaurants]._id,
-          restaurants: get.data.restaurants[get.data.restaurants].restaurants,
-          submitted: true
-        }
-        setRestaurants(newRestaurant)
       } catch (error) {
         console.log(error)
       }
     }
     postRestaurant(formValues)
-    setRestaurants(restaurants)
     setFormValues(initialValues)
   }
 
@@ -122,12 +113,12 @@ const Form = (props) => {
           placeholder= 'Old Victoria'
         /> */}
         <br></br>
-        <label htmlFor="restaurant">Restaurant:</label>
+        <label htmlFor="restaurant">Neighborhood:</label>
         <input
           id="name"
           onChange={handleChange}
           value={formValues.name}
-          placeholder= 'McDonalds'          
+          placeholder= 'Old Victoria'          
         />
         <br></br>
         <label htmlFor="address">Address:</label>
@@ -156,14 +147,6 @@ const Form = (props) => {
         <br></br>
         <button type="submit" onSubmit={props.onSubmit}>Send</button>
       </form>
-      {/* )<h1>Issues:</h1>
-      {issues.map((issue) => (
-        <div key={issue._id}>
-          <h3>Type: {issue.type}</h3>
-          <p>Subject: {issue.subject}</p>
-          <p>Message: {issue.message}</p>
-        </div>
-      ))} */}
     </div>
   )
 }
