@@ -6,7 +6,6 @@ import Nav from './components/Nav'
 import Restaurants from './components/Restaurants'
 import Restaurant from './components/Restaurant'
 import Hood from './components/Hood'
-import Form from './components/Form'
 
 function App() {
   return (

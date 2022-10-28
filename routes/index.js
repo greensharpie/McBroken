@@ -10,6 +10,8 @@ router.get('/neighborhoods', controllers.getAllHoods)
 
 router.get('/neighborhoods/:id', controllers.getHoodById)
 
+router.delete('/neighborhoods/:id', controllers.deleteHood)
+
 router.post('/restaurants', controllers.createRest)
 
 router.get('/restaurants', controllers.getAllRests)

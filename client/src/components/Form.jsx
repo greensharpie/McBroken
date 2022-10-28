@@ -3,9 +3,8 @@ import axios from 'axios'
 import{ Link } from "react-router-dom"
 import { BASE_URL } from "../globals";
 import { useEffect } from "react";
-import Hood from "./Hood";
-import Restaurants from "./Restaurants";
-import e from "cors";
+
+
 
 const Form = (props) => {
   const restaurantInitialState = {
@@ -25,10 +24,11 @@ const Form = (props) => {
   }
 
   const [formValues, setFormValues] = useState(initialValues)
+  const [restaurants, setRestaurants] = useState(initialValues)
 
   const handleChange = (evt) => {
-    const { id, value } = evt.target
-    setFormValues({...formValues,[id]: value})
+    const { id, value, restaurants } = evt.target
+    setFormValues({...formValues,[id]: value, restaurants})
   }
 
   const handleSubmit = (evt) => {
@@ -38,15 +38,17 @@ const Form = (props) => {
         await axios.post(`${BASE_URL}/neighborhoods`, input)
         let get = await axios.get(`${BASE_URL}/neighborhoods/`)
         const newRestaurant = {
-          _id: get.data.restaurants[get.data.restaurants.length-1]._id,
+          _id: get.data.restaurants[get.data.restaurants]._id,
+          restaurants: get.data.restaurants[get.data.restaurants].restaurants,
           submitted: true
         }
-        setRestaurant(newRestaurant)
+        setRestaurants(newRestaurant)
       } catch (error) {
         console.log(error)
       }
     }
     postRestaurant(formValues)
+    setRestaurants(restaurants)
     setFormValues(initialValues)
   }
 
@@ -112,17 +114,13 @@ const Form = (props) => {
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Submit Restaurant</label>
         <br></br>
-        <label htmlFor="neighborhoods">Neighborhoods:</label>
-        <select
+        {/* <label htmlFor="neighborhoods">Neighborhoods:</label>
+        <input
           id="neighborhoods"
           onChange={handleChange}
-          value='Neighborhoods'
-        >
-          <option value="plaza midwood">Plaza Midwood</option>
-          <option value="Dilworth">Dilworth</option>
-          <option value="Wesley Heights">Welsey Heights</option>
-          <option value="South Park">South Park</option>
-        </select>
+          value={formValues.name}
+          placeholder= 'Old Victoria'
+        /> */}
         <br></br>
         <label htmlFor="restaurant">Restaurant:</label>
         <input
@@ -149,14 +147,12 @@ const Form = (props) => {
         />
         <br></br>
         <label htmlFor="working">Ice cream machine working:</label>
-        <select
+        <input
           id="working"
           onChange={handleChange}
-          value='working'
-        >
-          <option value="true">true</option>
-          <option value="false">false</option>
-        </select>
+          value={formValues.working}
+          placeholder='false'
+        />
         <br></br>
         <button type="submit" onSubmit={props.onSubmit}>Send</button>
       </form>

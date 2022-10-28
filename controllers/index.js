@@ -47,6 +47,19 @@ const updateHood = async (req, res) => {
   }
 }
 
+const deleteHood = async (req, res) => {
+  try {
+    const { id } = req.params
+    const deleted = await Neighborhood.findByIdAndDelete(id)
+    if (deleted) {
+      return res.status(200).send('Neighborhood deleted')
+    }
+    throw new Error('Neighborhood not found')
+  } catch (error) {
+    return res.status(500).send(error.message)
+  }
+}
+
 const createRest = async (req, res) => {
   try {
     const restaurant = await new Restaurant(req.body)
@@ -110,6 +123,7 @@ module.exports = {
   createHood,
   updateHood,
   getHoodById,
+  deleteHood,
   getAllRests,
   getRestsById,
   updateRest,

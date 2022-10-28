@@ -24,6 +24,17 @@ const Hood = () => {
 }, [])
 
 
+
+const deleteRestaurant = async () => {
+  try{
+    await axios.delete(`${BASE_URL}/neighborhoods/${id}`)
+  } catch (error) {
+    console.log(error)
+  }
+}
+
+
+
   return (
     <div className='hoodContainer'>
       <h1>{neighborhood?.name}</h1>
@@ -43,6 +54,7 @@ const Hood = () => {
         
         ))}
       </div>
+      <button className='buttonDelete' onClick={deleteRestaurant}>Delete Restaurant</button>
     </div>
   )
 }
