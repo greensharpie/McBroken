@@ -23,8 +23,6 @@ const Hood = () => {
     showNeighborhood()
 }, [])
 
-
-
 const deleteRestaurant = async () => {
   try{
     await axios.delete(`${BASE_URL}/neighborhoods/${id}`)
@@ -32,9 +30,6 @@ const deleteRestaurant = async () => {
     console.log(error)
   }
 }
-
-
-
   return (
     <div className='hoodContainer'>
       <h1>{neighborhood?.name}</h1>
@@ -49,9 +44,7 @@ const deleteRestaurant = async () => {
               </div>
             <h3>Ice Cream Machine Working: {restaurant.broken}</h3>
             </div>
-          </Link>
-          //rest of restaurant info edit and delete button
-        
+          </Link>        
         ))}
       </div>
       <button className='buttonDelete' onClick={deleteRestaurant}>Delete Restaurant</button>

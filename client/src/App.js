@@ -20,8 +20,6 @@ function App() {
           <Route path="/neighborhoods/:id" element={<Hood />} />
           <Route path="/restaurants" element={<Restaurants />} />
           <Route path="/restaurants/:id" element={<Restaurant />} />
-          {/* <Route path="/restaurants" element={<Form />} /> */}
-          {/* route for create -- to a new page "rest form" on submit hit post route */}
         </Routes>
       </main>
     </div>

@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";  
 import { Link } from 'react-router-dom'
 import axios from 'axios'
-import Hood from "./Hood";
 import { BASE_URL } from '../globals'
 
 const Neighborhoods = () => {

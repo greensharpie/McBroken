@@ -1,10 +1,6 @@
 import { useState } from "react"; 
 import axios from 'axios'
-import{ Link } from "react-router-dom"
 import { BASE_URL } from "../globals";
-import { useEffect } from "react";
-
-
 
 const Form = (props) => {
   const restaurantInitialState = {
@@ -43,75 +39,12 @@ const Form = (props) => {
     setFormValues(initialValues)
   }
 
-
-
-
-
-
-
-
-  // const [restaurant, setRestaurant] = useState([])
-  // const initialState = {
-  //   name: '',
-  //   address: '',
-  //   phone: '',
-  //   broken: '',
-  //   working: '',
-  //   update: '',
-  // }
-  // const [formState, setFormState] = useState(initialState)
-  // const [formValue, setFormValues] = useState(initalValues)
-
-
-  // useEffect(() => {
-  //   const getRestaurant = async () => {
-  //     try{
-  //       let res = await axios.get(`${BASE_URL}/restaurant/:id`)
-  //       console.log('form', res.data)
-  //       setRestaurants(res.data)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   getRestaurant()
-  // })
-
-  // const handleSubmit = (evt) => {
-  //   evt.preventDefault()
-  //   const postRestaurant = async (input) =>{
-  //     try{
-  //       axios.post(`${BASE_URL}/restaurants`, input)
-  //       let get = await axios.get(`${BASE_URL}/restaurants/`)
-  //       const newRestaurant = {
-  //         _id: get.data.restaurants[get.data.restaurants].id,
-  //         submitted: true
-  //       }
-  //       setRestaurant(newRestaurant)
-  //     } catch (error) {
-  //       console.log(error)
-  //     }
-  //   }
-  //   postRestaurant()
-  //   setFormState(initialState)
-  // }
-
-  // const handleChange = (evt) => {
-  //   setFormState({...formState, [evt.target.id]: evt.target.value})
-  // }
-
   return(
     <div>
 
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Submit Restaurant</label>
         <br></br>
-        {/* <label htmlFor="neighborhoods">Neighborhoods:</label>
-        <input
-          id="neighborhoods"
-          onChange={handleChange}
-          value={formValues.name}
-          placeholder= 'Old Victoria'
-        /> */}
         <br></br>
         <label htmlFor="restaurant">Neighborhood:</label>
         <input
